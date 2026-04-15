@@ -1,0 +1,7 @@
+[project]
+name = "Valobot"
+version = "0.1.0"
+description = "This project is a bot for managing Valorant custom games on Discord."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []

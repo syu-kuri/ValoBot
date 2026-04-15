@@ -1,0 +1,9 @@
+# environment
+.venv
+__pycache__
+
+# claude
+.claude
+
+# env
+.env
