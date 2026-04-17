@@ -89,12 +89,11 @@ git push origin feature/your-feature-name
 - docstring・コメント・型アノテーションは全て**英語**で記述
 - 全ての関数・クラスにdocstringを付ける
 - 全ての関数シグネチャに型アノテーションを付ける
-- PR作成前に必ずlintと型チェックを実行してください。
+- PR作成前に必ずlintを実行してください。
 
 ```bash
 uv run ruff check .
 uv run ruff format --check .
-uv run mypy .
 ```
 
 ---
