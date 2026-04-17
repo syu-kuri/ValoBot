@@ -89,12 +89,11 @@ git push origin feature/your-feature-name
 - All docstrings, comments, and type annotations must be written in **English**
 - Every function and class must have a docstring
 - All function signatures must include type annotations
-- Run lint and type checks before opening a PR:
+- Run lint check before opening a PR:
 
 ```bash
 uv run ruff check .
 uv run ruff format --check .
-uv run mypy .
 ```
 
 ---
