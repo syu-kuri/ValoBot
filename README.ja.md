@@ -12,6 +12,7 @@ Valorantカスタム対戦管理のためのDiscord Botです。discord.py Compo
 - **Join / Leave** — ボタン操作でキューへの参加・離脱が可能
 - **Split Teams** — キュー内のプレイヤーをランダムに2チームへ振り分け
 - **Reset** — 管理者はいつでもキューをリセット可能
+- `/map-roulette` — スプラッシュ画像付きでVALORANTのマップをランダム抽選（スタンダード / スカーミッシュ / TDM対応）
 
 ---
 
@@ -37,7 +38,10 @@ uv sync
 cp .env.sample .env
 # .env を編集して DISCORD_TOKEN を設定する
 
-# 4. Botを起動
+# 4. マップ画像をダウンロード（/map-roulette に必要）
+uv run python scripts/download_maps.py
+
+# 5. Botを起動
 uv run python main.py
 ```
 
@@ -95,6 +99,16 @@ git push origin feature/your-feature-name
 uv run ruff check .
 uv run ruff format --check .
 ```
+
+---
+
+## マップ画像について
+
+マップのスプラッシュ画像はRiot Gamesの著作物のため、このリポジトリには含まれていません。
+クローン後に `scripts/download_maps.py` を実行すると、[valorant-api.com](https://valorant-api.com) から自動でダウンロードできます。
+画像はDiscord上での表示のみに使用し、再配布は行いません。
+
+> 全てのゲームアセットはRiot Gamesに帰属します。本プロジェクトはRiot Gamesとは無関係であり、公式の承認を受けたものではありません。
 
 ---
 

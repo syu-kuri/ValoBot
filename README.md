@@ -12,6 +12,7 @@ A Discord bot for managing Valorant custom games — queue management and team s
 - **Join / Leave** — Players join or leave the queue via buttons
 - **Split Teams** — Randomly splits queued players into two balanced teams
 - **Reset** — Administrators can clear the queue at any time
+- `/map-roulette` — Randomly selects a Valorant map with splash image (Standard / Skirmish / TDM modes)
 
 ---
 
@@ -37,7 +38,10 @@ uv sync
 cp .env.sample .env
 # Edit .env and set your DISCORD_TOKEN
 
-# 4. Run the bot
+# 4. Download map images (required for /map-roulette)
+uv run python scripts/download_maps.py
+
+# 5. Run the bot
 uv run python main.py
 ```
 
@@ -95,6 +99,16 @@ git push origin feature/your-feature-name
 uv run ruff check .
 uv run ruff format --check .
 ```
+
+---
+
+## Map Images
+
+Map splash images are **not** included in this repository (Riot Games copyright).
+Run `scripts/download_maps.py` after cloning to download them from [valorant-api.com](https://valorant-api.com).
+The images are used solely for in-Discord display and are not redistributed.
+
+> All game assets belong to Riot Games. This project is not affiliated with or endorsed by Riot Games.
 
 ---
 
