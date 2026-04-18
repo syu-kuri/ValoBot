@@ -35,7 +35,7 @@ TARGETS: dict[str, str] = {
     "Kasbah": "kasbah.png",
     "Piazza": "piazza.png",
     # Skirmish (A/B/C share the same splash image)
-    "Skirmish A": "skirmish_a.png",
+    "Skirmish A": "skirmish.png",
 }
 
 
