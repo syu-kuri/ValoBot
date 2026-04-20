@@ -59,46 +59,19 @@ uv run python main.py
 
 ---
 
-## Requesting a Code Change (Pull Request)
+## Contributing
 
-### Branch Naming Rules
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide — fork workflow, branch naming, code standards, and PR instructions.
 
-All branches must be cut from `staging`. **Direct pushes to `main` are prohibited.**
+---
 
-| Type | Pattern | Example |
-|---|---|---|
-| New feature | `feature/<short-description>` | `feature/rank-based-team-split` |
-| Bug fix | `fix/<short-description>` | `fix/join-button-no-response` |
-| Documentation | `docs/<short-description>` | `docs/update-readme` |
-| Refactoring | `refactor/<short-description>` | `refactor/queue-view-cleanup` |
-| Chore | `chore/<short-description>` | `chore/update-dependencies` |
+## Map Images
 
-### Workflow
+Map splash images are **not** included in this repository (Riot Games copyright).
+Run `scripts/download_maps.py` after cloning to download them from [valorant-api.com](https://valorant-api.com).
+The images are used solely for in-Discord display and are not redistributed.
 
-```bash
-# 1. Create a branch from staging
-git checkout staging
-git checkout -b feature/your-feature-name
-
-# 2. Make your changes, then commit
-git add <files>
-git commit -m "Short description of what and why"
-
-# 3. Push and open a Pull Request targeting staging
-git push origin feature/your-feature-name
-```
-
-### Code Standards
-
-- All docstrings, comments, and type annotations must be written in **English**
-- Every function and class must have a docstring
-- All function signatures must include type annotations
-- Run lint check before opening a PR:
-
-```bash
-uv run ruff check .
-uv run ruff format --check .
-```
+> All game assets belong to Riot Games. This project is not affiliated with or endorsed by Riot Games.
 
 ---
 
@@ -114,4 +87,4 @@ The images are used solely for in-Discord display and are not redistributed.
 
 ## License
 
-MIT
+[MIT](LICENSE)

@@ -59,46 +59,19 @@ uv run python main.py
 
 ---
 
-## コード修正リクエスト（Pull Request）
+## コントリビュート
 
-### ブランチ命名規則
+フォークワークフロー・ブランチ命名規則・コード規約・PR手順の詳細は [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
 
-**全てのブランチは `staging` から切ってください。`main` への直接プッシュは禁止です。**
+---
 
-| 種別 | パターン | 例 |
-|---|---|---|
-| 新機能 | `feature/<内容>` | `feature/rank-based-team-split` |
-| バグ修正 | `fix/<内容>` | `fix/join-button-no-response` |
-| ドキュメント | `docs/<内容>` | `docs/update-readme` |
-| リファクタリング | `refactor/<内容>` | `refactor/queue-view-cleanup` |
-| メンテナンス | `chore/<内容>` | `chore/update-dependencies` |
+## マップ画像について
 
-### 手順
+マップのスプラッシュ画像はRiot Gamesの著作物のため、このリポジトリには含まれていません。
+クローン後に `scripts/download_maps.py` を実行すると、[valorant-api.com](https://valorant-api.com) から自動でダウンロードできます。
+画像はDiscord上での表示のみに使用し、再配布は行いません。
 
-```bash
-# 1. staging からブランチを作成
-git checkout staging
-git checkout -b feature/your-feature-name
-
-# 2. 変更を加えてコミット（コミットメッセージは英語）
-git add <files>
-git commit -m "Short description of what and why"
-
-# 3. プッシュして staging 向けにPull Requestを作成
-git push origin feature/your-feature-name
-```
-
-### コード規約
-
-- docstring・コメント・型アノテーションは全て**英語**で記述
-- 全ての関数・クラスにdocstringを付ける
-- 全ての関数シグネチャに型アノテーションを付ける
-- PR作成前に必ずlintを実行してください。
-
-```bash
-uv run ruff check .
-uv run ruff format --check .
-```
+> 全てのゲームアセットはRiot Gamesに帰属します。本プロジェクトはRiot Gamesとは無関係であり、公式の承認を受けたものではありません。
 
 ---
 
@@ -114,4 +87,4 @@ uv run ruff format --check .
 
 ## ライセンス
 
-MIT
+[MIT](LICENSE)
