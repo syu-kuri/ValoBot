@@ -1,5 +1,3 @@
-"""Cog for the Valorant map roulette feature."""
-
 import random
 from enum import Enum
 from functools import partial
