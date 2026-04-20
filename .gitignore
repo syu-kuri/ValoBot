@@ -7,3 +7,6 @@ __pycache__
 
 # env
 .env
+
+# map images (Riot Games copyright — download separately via scripts/download_maps.py)
+assets/maps/*.png
