@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import os
 from pathlib import Path
 
@@ -7,6 +8,12 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 COGS_DIR = Path(__file__).parent / "cogs"
 
@@ -31,15 +38,15 @@ class Valobot(commands.Bot):
 
             try:
                 await self.load_extension(extension)
-                print(f"Loaded extension: {extension}")
+                logger.info("Loaded extension: %s", extension)
             except Exception as e:
-                print(f"Failed to load extension {extension}: {e}")
+                logger.error("Failed to load extension %s: %s", extension, e)
 
         await self.tree.sync()
 
     async def on_ready(self) -> None:
         """Handle the bot ready event."""
-        print(f"Logged in as {self.user} (ID: {self.user.id})")
+        logger.info("Logged in as %s (ID: %s)", self.user, self.user.id)
 
 
 async def main() -> None:
