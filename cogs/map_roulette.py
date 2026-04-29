@@ -1,4 +1,5 @@
 import random
+import uuid
 from enum import Enum
 from functools import partial
 from pathlib import Path
@@ -99,6 +100,7 @@ class MapRouletteView(discord.ui.LayoutView):
     def __init__(self) -> None:
         """Initialize the view in mode-selection state."""
         super().__init__(timeout=None)
+        self._session_id: str = uuid.uuid4().hex
         self._mode: GameMode | None = None
         self._selected: str | None = None
         self._build()
@@ -134,7 +136,7 @@ class MapRouletteView(discord.ui.LayoutView):
         btn: discord.ui.Button[MapRouletteView] = discord.ui.Button(
             label="Change Mode",
             style=discord.ButtonStyle.secondary,
-            custom_id="mr:change_mode",
+            custom_id=f"mr:change_mode:{self._session_id}",
         )
         btn.callback = self._on_change_mode
         return btn
@@ -155,20 +157,21 @@ class MapRouletteView(discord.ui.LayoutView):
 
     def _build_mode_selection(self) -> None:
         """Build the mode selection state."""
+        sid = self._session_id
         standard_btn: discord.ui.Button[MapRouletteView] = discord.ui.Button(
             label="Standard",
             style=discord.ButtonStyle.primary,
-            custom_id="mr:mode:standard",
+            custom_id=f"mr:mode:standard:{sid}",
         )
         skirmish_btn: discord.ui.Button[MapRouletteView] = discord.ui.Button(
             label="Skirmish",
             style=discord.ButtonStyle.secondary,
-            custom_id="mr:mode:skirmish",
+            custom_id=f"mr:mode:skirmish:{sid}",
         )
         tdm_btn: discord.ui.Button[MapRouletteView] = discord.ui.Button(
             label="Team Deathmatch",
             style=discord.ButtonStyle.secondary,
-            custom_id="mr:mode:tdm",
+            custom_id=f"mr:mode:tdm:{sid}",
         )
 
         standard_btn.callback = partial(self._on_mode_select, mode=GameMode.STANDARD)
@@ -197,7 +200,7 @@ class MapRouletteView(discord.ui.LayoutView):
             label="Spin",
             style=discord.ButtonStyle.success,
             emoji="🎰",
-            custom_id="mr:spin",
+            custom_id=f"mr:spin:{self._session_id}",
             disabled=not maps,
         )
         spin_btn.callback = self._on_spin
@@ -222,7 +225,7 @@ class MapRouletteView(discord.ui.LayoutView):
             label="Spin Again",
             style=discord.ButtonStyle.success,
             emoji="🎰",
-            custom_id="mr:spin",
+            custom_id=f"mr:spin:{self._session_id}",
         )
         spin_again_btn.callback = self._on_spin
 

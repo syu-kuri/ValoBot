@@ -1,4 +1,5 @@
 import random
+import uuid
 
 import discord
 from discord import app_commands
@@ -12,8 +13,9 @@ class QueueView(discord.ui.LayoutView):
     """Interactive Components v2 view for the custom game queue."""
 
     def __init__(self) -> None:
-        """Initialize the queue view with an empty queue."""
+        """Initialize the queue view with an empty queue and a unique session ID."""
         super().__init__(timeout=None)
+        self._session_id: str = uuid.uuid4().hex
         self._queue: list[discord.Member] = []
         self._rebuild()
 
@@ -33,29 +35,30 @@ class QueueView(discord.ui.LayoutView):
         """Rebuild the Components v2 component tree to reflect current queue state."""
         self.clear_items()
 
+        sid = self._session_id
         join_btn: discord.ui.Button[QueueView] = discord.ui.Button(
             label="Join",
             style=discord.ButtonStyle.primary,
             emoji="✅",
-            custom_id="queue:join",
+            custom_id=f"queue:join:{sid}",
         )
         leave_btn: discord.ui.Button[QueueView] = discord.ui.Button(
             label="Leave",
             style=discord.ButtonStyle.secondary,
             emoji="🚪",
-            custom_id="queue:leave",
+            custom_id=f"queue:leave:{sid}",
         )
         start_btn: discord.ui.Button[QueueView] = discord.ui.Button(
             label="Split Teams",
             style=discord.ButtonStyle.success,
             emoji="⚔️",
-            custom_id="queue:start",
+            custom_id=f"queue:start:{sid}",
         )
         reset_btn: discord.ui.Button[QueueView] = discord.ui.Button(
             label="Reset",
             style=discord.ButtonStyle.danger,
             emoji="🔄",
-            custom_id="queue:reset",
+            custom_id=f"queue:reset:{sid}",
         )
 
         join_btn.callback = self._on_join
@@ -180,6 +183,7 @@ class TeamsView(discord.ui.LayoutView):
             team_b: Members assigned to Team B.
         """
         super().__init__(timeout=None)
+        self._session_id: str = uuid.uuid4().hex
         self._team_a = team_a
         self._team_b = team_b
         self._build()
@@ -190,7 +194,7 @@ class TeamsView(discord.ui.LayoutView):
             label="New Queue",
             style=discord.ButtonStyle.primary,
             emoji="🔄",
-            custom_id="teams:new_queue",
+            custom_id=f"teams:new_queue:{self._session_id}",
         )
         new_queue_btn.callback = self._on_new_queue
 
